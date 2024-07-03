@@ -10,7 +10,6 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = PasswordValidator.class)
-
 public @interface FieldMatch {
     String message() default "The password fields must match";
     Class<?>[] groups() default {};

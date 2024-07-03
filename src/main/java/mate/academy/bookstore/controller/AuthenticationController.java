@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import mate.academy.bookstore.dto.user.UserRegistrationRequestDto;
 import mate.academy.bookstore.dto.user.UserResponseDto;
 import mate.academy.bookstore.exception.RegistrationException;
-import mate.academy.bookstore.security.AuthenticationService;
 import mate.academy.bookstore.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth")
 public class AuthenticationController {
     private final UserService userService;
-    private final AuthenticationService authenticationService;
 
     @Operation(summary = "Registration a new user",
             description = "Endpoint to create a new user in the system.")
