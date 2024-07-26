@@ -23,6 +23,8 @@ public record UserRegistrationRequestDto(
         String lastName,
         @NotNull
         @Length(min = 5, max = 100)
-        String shippingAddress
+        String shippingAddress,
+        @NotNull
+        String role
 ) {
 }

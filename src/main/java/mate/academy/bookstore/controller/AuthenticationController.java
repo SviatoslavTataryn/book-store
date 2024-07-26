@@ -7,6 +7,7 @@ import mate.academy.bookstore.dto.user.UserRegistrationRequestDto;
 import mate.academy.bookstore.dto.user.UserResponseDto;
 import mate.academy.bookstore.exception.RegistrationException;
 import mate.academy.bookstore.service.UserService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ public class AuthenticationController {
 
     @Operation(summary = "Registration a new user",
             description = "Endpoint to create a new user in the system.")
+    @PreAuthorize("hasAnyRole('USER')")
     @PostMapping("/registration")
     public UserResponseDto registerUser(@RequestBody UserRegistrationRequestDto requestDto
     ) throws RegistrationException {

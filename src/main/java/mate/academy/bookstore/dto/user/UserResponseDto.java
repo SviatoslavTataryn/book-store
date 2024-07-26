@@ -1,10 +1,13 @@
 package mate.academy.bookstore.dto.user;
 
+import java.util.Set;
+
 public record UserResponseDto(
         Long id,
         String email,
         String firstName,
         String lastName,
-        String shippingAddress
+        String shippingAddress,
+        Set<String> roles
 ) {
 }

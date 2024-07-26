@@ -6,6 +6,7 @@ import mate.academy.bookstore.dto.book.CreateBookRequestDto;
 import org.springframework.data.domain.Pageable;
 
 public interface BookService {
+
     BookDto save(CreateBookRequestDto bookRequestDto);
 
     List<BookDto> getAll(Pageable pageable);

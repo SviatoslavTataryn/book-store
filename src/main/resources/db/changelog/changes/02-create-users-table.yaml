@@ -1,8 +1,15 @@
 databaseChangeLog:
   - changeSet:
-      id: create-users-table
+      id: 2
       author: ST
       changes:
+        - preConditions:
+            onFail: CONTINUE
+            onError: CONTINUE
+            preConditions:
+              - not:
+                  tableExists:
+                    tableName: users
         - createTable:
             tableName: users
             columns:
@@ -37,5 +44,10 @@ databaseChangeLog:
               - column:
                   name: shipping_address
                   type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_deleted
+                  type: bit
                   constraints:
                     nullable: false
