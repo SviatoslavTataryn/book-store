@@ -2,7 +2,7 @@ package mate.academy.bookstore.config;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,10 +15,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@AllArgsConstructor
+@RequiredArgsConstructor
 @EnableWebSecurity
 public class SecurityConfig {
-
     private final UserDetailsService userDetailsService;
 
     @Bean
@@ -42,7 +41,7 @@ public class SecurityConfig {
                                         "/v3/api-docs/**",
                                         "/swagger-resources/**",
                                         "/webjars/**",
-                                        "/v2/api-docs/**") // дозволяє доступ до Swagger та OpenAPI
+                                        "/v2/api-docs/**")
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated()

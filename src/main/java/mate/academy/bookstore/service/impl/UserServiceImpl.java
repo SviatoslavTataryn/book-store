@@ -1,5 +1,6 @@
 package mate.academy.bookstore.service.impl;
 
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import mate.academy.bookstore.dto.user.UserRegistrationRequestDto;
 import mate.academy.bookstore.dto.user.UserResponseDto;
@@ -23,23 +24,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponseDto register(UserRegistrationRequestDto requestDto) {
-        if (userRepository.findByEmail(requestDto.email()).isPresent()) {
+        if (userRepository.existsByEmail(requestDto.email())) {
             throw new RegistrationException("Can't register user with email "
                     + requestDto.email());
         }
         User user = new User();
-        user.setEmail(requestDto.email());
         user.setPassword(passwordEncoder.encode(requestDto.password()));
+        Role role = roleRepository.findByName(Role.RoleName.USER);
+        user.setRoles(Set.of(role));
 
-        Role role = roleRepository.findByName(
-                Role.RoleName.valueOf(requestDto.role().toUpperCase()));
-        if (role == null) {
-            throw new RuntimeException("Role not found");
-        }
-        user.addRole(role);
-
-        User savedUser = userRepository.save(user);
-        return userMapper.toUserResponse(savedUser);
+        userRepository.save(user);
+        return userMapper.toDto(user);
     }
 }
 
