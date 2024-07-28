@@ -8,5 +8,6 @@ public record BookDto(Long id,
                       String isbn,
                       BigDecimal price,
                       String description,
-                      String coverImage) {
+                      String coverImage,
+                      boolean deleted) {
 }
